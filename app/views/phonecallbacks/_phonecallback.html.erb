@@ -1,0 +1,10 @@
+<div style="border: 2px solid green" id="<%= dom_id(phonecallback) %>">
+  <p><%= link_to phonecallback.id, phonecallback_path(phonecallback.id) %></p>
+  <p><%= "Статус:#{phonecallback.phonecallback_state}"%>
+  <p><%= "Имя:#{phonecallback.name}"%></p>
+  <p><%= "Телефон:#{phonecallback.phonenumber}"%></p>
+  <p><%= "Время заявки #{phonecallback.created_at.time}"%></p>
+  <p><%= link_to 'Редактировать', edit_phonecallback_path(phonecallback.id) %></p>
+  <p><%= link_to 'Удалить', phonecallback_path(phonecallback.id), method: :delete %></p>
+  <%= link_to "DeleteJS", phonecallback_path(phonecallback.id), { method: "delete", remote: true, data: { confirm: "Are you sure?" }, class: "delete_phonecallback_link" } %>
+</div>

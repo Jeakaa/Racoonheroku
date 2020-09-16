@@ -1,0 +1,5 @@
+
+<p>Колличество ядер:<%= text_field_tag 'product[cpu_attributes][core_count]' %></p>
+<p>Производительность:<%= text_field_tag 'product[cpu_attributes][performance]' %></p>
+<p>Поколение:<%= select_tag 'product[cpu_attributes][generation_id]', options_for_select(Generation.all.collect { |generation| [generation.name, generation.id]} ) %></p>
+<p>Socket:<%= select_tag 'product[cpu_attributes][cpusocket_id]', options_for_select(Cpusocket.all.collect { |cpusocket| [cpusocket.name, cpusocket.id]} ) %></p>

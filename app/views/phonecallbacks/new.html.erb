@@ -1,0 +1,22 @@
+<h2>Запросить обратный звонок.</h2>
+
+<div><% if @phonecallback.errors.any? %>
+    <% @phonecallback.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+  <% end %>
+</div>
+
+<div class="buttoncolor">
+<%= form_with(model: @phonecallback) do |phonecallback| %>
+    <div class="formfield">
+  <p>*Ваше имя</p>
+  <p><%= phonecallback.text_field :name %></p>
+  <p>*Номер телефона</p>
+  <p><%= phonecallback.text_field :phonenumber %></p>
+  <p>Комментарий</p>
+  <p><%= phonecallback.text_area :comment %></p>
+  <p><%= phonecallback.submit 'Перезвонить мне'%></p>
+    </div>
+<% end %>
+</div>

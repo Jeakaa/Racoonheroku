@@ -1,0 +1,27 @@
+<h2>New product</h2>
+
+<%= form_with model: @product do |f| %>
+  <div class="formfield">
+  <p>Название: <%= f.text_field :name%></p>
+  <p>Цена: <%= f.text_field :price %></p>
+  <p>Описание: <%= f.text_field :description %></p>
+  <p>Колличество: <%= f.text_field :quantity %></p>
+  <p>Производитель: <%= f.text_field :company %></p>
+  <p>Картинка: <%= f.file_field :avatar %></p>
+  <p>Категории id: <%= f.select :category_id, options_for_select([['', nil]] + Category.all.collect { |category| [category.name, category.id]} ) %></p>
+  <div id="zeus"></div>
+  <p><%= f.submit 'Ok' %></p>
+  </div>
+<% end %>
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,15 @@
+<h2>Изменим</h2>
+
+<%= form_with(model: @phonecallback) do |phonecallback| %>
+  <div class="formfield">
+    <p>Статус:</p>
+    <p><%= phonecallback.select :state, Phonecallback::STATES %></p>
+    <p>*Имя клиента</p>
+    <p><%= phonecallback.text_field :name %></p>
+    <p>*Номер телефона</p>
+    <p><%= phonecallback.text_field :phonenumber %></p>
+    <p>Комментарий</p>
+    <p><%= phonecallback.text_area :comment %></p>
+    <p><%= phonecallback.submit 'Сохранить'%></p>
+  </div>
+<% end %>

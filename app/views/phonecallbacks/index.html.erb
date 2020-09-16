@@ -1,0 +1,39 @@
+<h2>Коллбэки</h2>
+
+<p><%= link_to 'Перезвонить мне', new_phonecallback_path %></p>
+
+<div><% if @phonecallback.errors.any? %>
+    <% @phonecallback.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+  <% end %>
+</div>
+
+<%= form_with(model: @phonecallback) do |phonecallback| %>
+  <div class="formfield">
+    <p>*Ваше имя</p>
+    <p><%= phonecallback.text_field :name %></p>
+    <p>*Номер телефона</p>
+    <p><%= phonecallback.text_field :phonenumber %></p>
+    <p>Комментарий</p>
+    <p><%= phonecallback.text_area :comment %></p>
+    <p><%= phonecallback.submit 'Перезвонить мне'%></p>
+  </div>
+<% end %>
+
+<%= form_with( url: phonecallbacks_path, method: 'get', local: true ) do %>
+  <%= select_tag :state, options_for_select([['', nil]] + Phonecallback::STATES, @state) %>
+  <%= submit_tag 'Поменять' %>
+<% end %>
+
+<div style="border: 2px solid green" id="phone_callbacks">
+
+<% @phonecallbacks.each do |phonecallback| %>
+  <%= render "phonecallbacks/phonecallback", phonecallback: phonecallback %>
+<% end %>
+
+</div>
+
+
+
+

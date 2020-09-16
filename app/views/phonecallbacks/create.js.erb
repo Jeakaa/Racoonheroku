@@ -1,0 +1,6 @@
+$( document ).ready(function() {
+    $("#phone_callbacks").append("<%= j render 'phonecallbacks/phonecallback', phonecallback: @phonecallback %>");
+    $("#phonecallback_name").val("");
+    $("#phonecallback_phonenumber").val("");
+    $("#phonecallback_comment").val("");
+});

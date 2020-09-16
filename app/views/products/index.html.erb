@@ -1,0 +1,43 @@
+<h2>Hello all product</h2>
+
+  <%= link_to 'Новый продукт', new_product_path %>
+  <%= search_form_for(@q, class: 'form-inline my-2 my-lg-0') do |f|  %>
+    <%= f.label :name_cont, "название" %>
+    <%= f.search_field :name_cont, placeholder: 'Что ищите?', class:'form-control mr-sm-2' %>
+    <%= f.label :price_gteq, "цена от" %>
+    <%= f.search_field :price_gteq, class:'form-control mr-sm-2' %>
+    <%= f.label :price_lteq, "цена до" %>
+    <%= f.search_field :price_lteq, class:'form-control mr-sm-2' %>
+    <%= f.label :cpu_performance_gteq, "производительность от" %>
+    <%= f.search_field :cpu_performance_gteq, class:'form-control mr-sm-2' %>
+    <%= f.label :cpu_performance_lteq, "производительность до" %>
+    <%= f.search_field :cpu_performance_lteq, class:'form-control mr-sm-2' %>
+
+    <% Category.all.uniq.each do |category| %>
+    <%= check_box_tag('q[category_id_in][]', category.id, (true if @q.category_id_in.try(:include?, category.id))) %>
+    <%= category.name %>
+    <% end %>
+
+    <%= submit_tag 'ОК', class:'btn btn-outline-success my-2 my-sm-0 buttoncolor' %>
+  <% end %>
+
+<%= sort_link(@q, :name) %>
+<%= sort_link(@q, :price) %>
+
+<div>
+  <%= "К сожалению по вашему запросу ничего не найдено." unless @products.present? %>
+</div>
+
+<div class="row">
+    <% @products.each do |product| %>
+    <div class="col-lg-3 product">
+      <p><%= link_to product.name, product_path(product.id) %></p>
+    <%= image_tag product.avatar.url(:thumb) if product.avatar? %>
+    <p>Цена: <%= product.price %> </p>
+    <p>Категория: <%= product.category.name %> </p>
+    <p>Производитель: <%= product.company %> </p>
+    <p><%= link_to 'Редактировать', edit_product_path(product.id)%></p>
+    <p><%= link_to 'Удалить', product_path(product.id), method: :delete, data: {confirm: 'Вы уверены ?'} %></p>
+    </div>
+    <% end %>
+</div>

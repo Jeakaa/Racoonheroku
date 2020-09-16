@@ -1,0 +1,9 @@
+<h2>Страница товара</h2>
+
+  <div>
+    <%= image_tag @product.avatar.url(:thumb) if @product.avatar? %>
+    <p>Цена: <%= @product.price %> </p>
+    <p>Категория: <%= @product.category.name %> </p>
+  </div>
+
+  <%= render "products/#{@product.category.name}_show" %>
